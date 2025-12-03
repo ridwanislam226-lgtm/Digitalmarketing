@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexGen Digital | Premier Digital Marketing Agency</title>
+    <style>
+        /* --- Global Styles & Reset --- */
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #0056b3;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --max-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: auto;
+            padding: 0 20px;
+            overflow: hidden;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .section-padding {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2em;
+            color: var(--secondary-color);
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .primary-btn {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .primary-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #fff;
+            color: var(--text-color);
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: var(--secondary-color);
+        }
+
+        #main-nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        #main-nav ul li a {
+            padding: 5px 15px;
+            display: block;
+            font-weight: 500;
+        }
+
+        #main-nav ul li a.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none; /* Hide on desktop */
+            font-size: 1.5em;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            background: url('https://picsum.photos/1200/500?grayscale') no-repeat center center/cover; /* Replace with a professional image URL */
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); 
+        }
+
+        #hero .container {
+            position: relative; 
+            z-index: 2; 
+        }
+
+        #hero h2 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 900;
+        }
+
+        #hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        /* --- Card Grid (Services Preview) --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .learn-more {
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* --- Page Header & Service Detail --- */
+        .page-header {
+            background: var(--light-bg);
+            padding: 80px 0 40px;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .bg-light {
+            background: var(--light-bg);
+        }
+
+        .service-detail {
+            padding: 40px 0;
+        }
+
+        .service-detail h3 {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .service-detail ul {
+            list-style: disc;
+            margin-left: 20px;
+            padding-top: 10px;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.2em;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            color: #555;
+            margin-top: 20px;
+        }
+
+        /* --- Contact Form --- */
+        #demo-contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #ccc;
+        }
+
+        /* --- Media Queries (Responsiveness) --- */
+        @media (max-width: 768px) {
+            /* Mobile Navigation */
+            #main-nav {
+                display: none; 
+                position: absolute;
+                top: 60px; /* Below header */
+                left: 0;
+                right: 0;
+                background: #fff;
+                border-top: 1px solid #eee;
+                z-index: 10;
+                padding: 10px 0;
+            }
+            
+            #main-nav.active {
+                display: block; 
+            }
+
+            #main-nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            #main-nav ul li a {
+                padding: 10px 15px;
+                border-bottom: 1px solid #f4f4f4;
+            }
+
+            .menu-toggle {
+                display: block; /* Show the hamburger menu */
+            }
+
+            /* General Adjustments */
+            #hero {
+                padding: 70px 20px;
+            }
+
+            #hero h2 {
+                font-size: 2em;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo"><a href="#home-section">NexGen Digital</a></h1>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#home-section" class="active">Home</a></li>
+                    <li><a href="#services-section">Services</a></li>
+                    <li><a href="#about-section">About Us</a></li>
+                    <li><a href="#contact-section">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="home-section" class="hero">
+            <div class="container">
+                <h2>**Drive Your Growth with Data-Powered Strategies**</h2>
+                <p>We transform your online presence into a powerful, revenue-generating asset using cutting-edge analytics and proven marketing techniques.</p>
+                <a href="#contact-section" class="btn primary-btn">Start Your Project Today</a>
+            </div>
+        </section>
+
+        <section id="services-preview" class="section-padding">
+            <div class="container">
+                <h3 class="section-title">Our Core Expertise</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>🔍 SEO & Content</h4>
+                        <p>Dominate search rankings with strategic content and technical SEO optimization. **Track these clicks with GTM!**</p>
+                        <a href="#services-section" class="learn-more">Learn More &rarr;</a>
+                    </div>
+                    <div class="card">
+                        <h4>📣 Paid Advertising</h4>
+                        <p>Maximize ROI on Google, Facebook, and LinkedIn ads with granular targeting and A/B testing.</p>
+                        <a href="#services-section" class="learn-more">Learn More &rarr;</a>
+                    </div>
+                    <div class="card">
+                        <h4>📈 Web Analytics</h4>
+                        <p>Deep-dive into user behavior to identify growth opportunities and reduce bounce rates.</p>
+                        <a href="#services-section" class="learn-more">Learn More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="services-section" class="page-header section-padding">
+            <div class="container">
+                <h2>**Our Full Suite of Digital Marketing Services**</h2>
+                <p>From initial strategy to final conversion, we cover every touchpoint of the customer journey.</p>
+            </div>
+        </section>
+
+        <section id="seo-detail" class="service-detail section-padding">
+            <div class="container">
+                <h3 class="section-title">Search Engine Optimization (SEO)</h3>
+                <p>Our comprehensive SEO strategy includes technical audits, keyword research, on-page optimization, and high-quality content creation to ensure long-term organic growth. We focus on measurable results.</p>
+                <ul>
+                    <li>Technical SEO Audit</li>
+                    <li>Strategic Link Building</li>
+                    <li>Content Strategy & Creation</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="paid-detail" class="service-detail section-padding bg-light">
+            <div class="container">
+                <h3 class="section-title">Paid Media & PPC Management</h3>
+                <p>We manage campaigns across all major platforms (Google Ads, Meta, LinkedIn) with a focus on maximizing your ROAS (Return on Ad Spend) and continuously optimizing conversion funnels.</p>
+                <a href="#contact-section" class="btn primary-btn" id="paid-cta-btn">Get a PPC Audit (GTM Goal)</a>
+            </div>
+        </section>
+
+        <section id="analytics-detail" class="service-detail section-padding">
+            <div class="container">
+                <h3 class="section-title">Advanced Web Analytics & Tracking</h3>
+                <p>We are experts in setting up and configuring Google Analytics 4 (GA4) and Google Tag Manager (GTM). We provide clear dashboards so you can understand exactly where your leads and revenue are coming from.</p>
+            </div>
+        </section>
+
+        <section id="about-section" class="page-header section-padding">
+            <div class="container">
+                <h2>**Pioneering Digital Excellence Since 2018**</h2>
+                <p>We are a results-driven team of strategists, analysts, and creatives dedicated to your success.</p>
+            </div>
+        </section>
+        
+        <section id="our-mission" class="section-padding">
+            <div class="container">
+                <h3 class="section-title">Our Mission</h3>
+                <p>To provide transparent, effective digital marketing solutions that are deeply rooted in data analysis and deliver exceptional value to our clients.</p>
+                <blockquote class="quote">
+                    "We don't just run campaigns; we build sustainable digital ecosystems."
+                </blockquote>
+            </div>
+        </section>
+
+        <section id="contact-section" class="page-header section-padding">
+            <div class="container">
+                <h2>**Ready to Transform Your Marketing?**</h2>
+                <p>Get in touch today for a free consultation and personalized marketing strategy overview.</p>
+            </div>
+        </section>
+
+        <section id="contact-form-section" class="section-padding">
+            <div class="container">
+                <form id="demo-contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email (Required)</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Interested Service</label>
+                        <select id="service" name="service">
+                            <option value="General">General Inquiry</option>
+                            <option value="SEO">SEO & Content</option>
+                            <option value="PPC">Paid Advertising</option>
+                            <option value="Analytics">Web Analytics Setup</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn primary-btn">Send Inquiry</button>
+                </form>
+                <p id="form-message" class="hidden success-message"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 NexGen Digital Agency. All rights reserved. | <a href="#">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. Mobile Navigation Toggle ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.getElementById('main-nav');
+            const toggleButton = document.querySelector('.menu-toggle');
+
+            if (toggleButton && nav) {
+                toggleButton.addEventListener('click', () => {
+                    nav.classList.toggle('active');
+                });
+            }
+
+            // Close menu when a link is clicked (useful for mobile)
+            document.querySelectorAll('#main-nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (nav) {
+                        nav.classList.remove('active');
+                    }
+                    // Handle smooth scrolling to sections for the single-page demo
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        event.preventDefault(); // Prevent default hash navigation
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    
+                    // Update active state
+                    document.querySelectorAll('#main-nav a').forEach(a => a.classList.remove('active'));
+                    link.classList.add('active');
+                });
+            });
+        });
+
+
+        // --- 2. Contact Form Submission (Crucial for GTM Event Tracking) ---
+        const contactForm = document.getElementById('demo-contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Stop the form from actually submitting (it's a demo)
+
+                // --- CORE ANALYTICS STEP: Send a Data Layer Event to GTM ---
+                // This is what you will track in Google Tag Manager!
+                if (typeof dataLayer !== 'undefined') {
+                    dataLayer.push({
+                        'event': 'form_submit_success',
+                        'form_type': 'contact_us',
+                        'service_interest': document.getElementById('service').value
+                    });
+                    console.log('GTM Data Layer event pushed: form_submit_success');
+                } else {
+                     console.log('GTM Data Layer not detected. Event not pushed. Remember to add your GTM script!');
+                }
+                // -----------------------------------------------------------
+
+                // Simulate form submission success
+                contactForm.reset();
+                contactForm.style.display = 'none';
+                
+                formMessage.textContent = 'Thank you! Your inquiry has been successfully sent. We will be in touch shortly.';
+                formMessage.classList.remove('hidden');
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    formMessage.classList.add('hidden');
+                    contactForm.style.display = 'block';
+                }, 5000);
+            });
+        }
+    </script>
+</body>
+</html>
