@@ -24,6 +24,7 @@
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: var(--text-color);
+            scroll-behavior: smooth;
         }
 
         .container {
@@ -81,6 +82,9 @@
             color: var(--text-color);
             padding: 15px 0;
             border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         header .container {
@@ -121,8 +125,8 @@
         }
 
         /* --- Hero Section --- */
-        #hero {
-            background: url('https://picsum.photos/1200/500?grayscale') no-repeat center center/cover; /* Replace with a professional image URL */
+        #home-section {
+            background: url('https://picsum.photos/1200/500?grayscale') no-repeat center center/cover;
             color: #fff;
             text-align: center;
             padding: 100px 20px;
@@ -131,7 +135,7 @@
             align-items: center;
             position: relative;
         }
-        #hero::before {
+        #home-section::before {
             content: '';
             position: absolute;
             top: 0;
@@ -141,23 +145,23 @@
             background: rgba(0, 0, 0, 0.5); 
         }
 
-        #hero .container {
+        #home-section .container {
             position: relative; 
             z-index: 2; 
         }
 
-        #hero h2 {
+        #home-section h2 {
             font-size: 3em;
             margin-bottom: 15px;
             font-weight: 900;
         }
 
-        #hero p {
+        #home-section p {
             font-size: 1.2em;
             margin-bottom: 30px;
         }
 
-        /* --- Card Grid (Services Preview) --- */
+        /* --- Card Grid (Services Preview & Portfolio) --- */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -190,7 +194,7 @@
             font-weight: bold;
         }
 
-        /* --- Page Header & Service Detail --- */
+        /* --- Page Header & Detail Sections --- */
         .page-header {
             background: var(--light-bg);
             padding: 80px 0 40px;
@@ -295,7 +299,7 @@
                 right: 0;
                 background: #fff;
                 border-top: 1px solid #eee;
-                z-index: 10;
+                z-index: 90;
                 padding: 10px 0;
             }
             
@@ -318,11 +322,11 @@
             }
 
             /* General Adjustments */
-            #hero {
+            #home-section {
                 padding: 70px 20px;
             }
 
-            #hero h2 {
+            #home-section h2 {
                 font-size: 2em;
             }
 
@@ -340,7 +344,7 @@
                 <ul>
                     <li><a href="#home-section" class="active">Home</a></li>
                     <li><a href="#services-section">Services</a></li>
-                    <li><a href="#about-section">About Us</a></li>
+                    <li><a href="#portfolio-section">Portfolio</a></li> <li><a href="#about-section">About Us</a></li>
                     <li><a href="#contact-section">Contact</a></li>
                 </ul>
             </nav>
@@ -414,6 +418,36 @@
             </div>
         </section>
 
+        <section id="portfolio-section" class="page-header section-padding">
+            <div class="container">
+                <h2>**Our Success Stories: Data-Driven Results**</h2>
+                <p>Explore real-world examples of how NexGen Digital helped businesses achieve breakthrough growth.</p>
+            </div>
+        </section>
+
+        <section id="case-studies" class="section-padding bg-light">
+            <div class="container">
+                <h3 class="section-title">Featured Case Studies</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>Case Study 1: E-commerce Conversion Lift</h4>
+                        <p>Implemented GA4 and GTM to optimize the checkout funnel, resulting in a **25% increase in conversion rate**.</p>
+                        <a href="#" class="learn-more portfolio-link" data-project="ecommerce-lift">View Details (Track Me!) &rarr;</a>
+                    </div>
+                    <div class="card">
+                        <h4>Case Study 2: B2B Lead Generation</h4>
+                        <p>Used strategic content and paid social campaigns, reducing CPL (Cost Per Lead) by **40%** in six months.</p>
+                        <a href="#" class="learn-more portfolio-link" data-project="b2b-leads">View Details (Track Me!) &rarr;</a>
+                    </div>
+                    <div class="card">
+                        <h4>Case Study 3: Local SEO Domination</h4>
+                        <p>Achieved **top 3 local pack rankings** across 15 locations for a regional service provider.</p>
+                        <a href="#" class="learn-more portfolio-link" data-project="local-seo">View Details (Track Me!) &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="about-section" class="page-header section-padding">
             <div class="container">
                 <h2>**Pioneering Digital Excellence Since 2018**</h2>
@@ -476,7 +510,7 @@
     </footer>
 
     <script>
-        // --- 1. Mobile Navigation Toggle ---
+        // --- 1. Mobile Navigation Toggle & Smooth Scrolling ---
         document.addEventListener('DOMContentLoaded', () => {
             const nav = document.getElementById('main-nav');
             const toggleButton = document.querySelector('.menu-toggle');
@@ -487,17 +521,18 @@
                 });
             }
 
-            // Close menu when a link is clicked (useful for mobile)
+            // Handles smooth scrolling and active state for the single-page layout
             document.querySelectorAll('#main-nav a').forEach(link => {
-                link.addEventListener('click', () => {
+                link.addEventListener('click', (event) => {
                     if (nav) {
                         nav.classList.remove('active');
                     }
-                    // Handle smooth scrolling to sections for the single-page demo
+                    
                     const targetId = link.getAttribute('href').substring(1);
                     const targetElement = document.getElementById(targetId);
+                    
                     if (targetElement) {
-                        event.preventDefault(); // Prevent default hash navigation
+                        event.preventDefault(); // Prevent default hash jump
                         targetElement.scrollIntoView({ behavior: 'smooth' });
                     }
                     
@@ -509,42 +544,61 @@
         });
 
 
-        // --- 2. Contact Form Submission (Crucial for GTM Event Tracking) ---
+        // --- 2. Contact Form Submission (GTM Event Tracking) ---
         const contactForm = document.getElementById('demo-contact-form');
         const formMessage = document.getElementById('form-message');
 
         if (contactForm) {
             contactForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Stop the form from actually submitting (it's a demo)
+                event.preventDefault(); 
+                
+                const selectedService = document.getElementById('service').value;
 
                 // --- CORE ANALYTICS STEP: Send a Data Layer Event to GTM ---
-                // This is what you will track in Google Tag Manager!
                 if (typeof dataLayer !== 'undefined') {
                     dataLayer.push({
                         'event': 'form_submit_success',
                         'form_type': 'contact_us',
-                        'service_interest': document.getElementById('service').value
+                        'service_interest': selectedService // Custom parameter you can read in GTM
                     });
-                    console.log('GTM Data Layer event pushed: form_submit_success');
+                    console.log(`GTM Data Layer event pushed: form_submit_success for service: ${selectedService}`);
                 } else {
                      console.log('GTM Data Layer not detected. Event not pushed. Remember to add your GTM script!');
                 }
                 // -----------------------------------------------------------
 
-                // Simulate form submission success
                 contactForm.reset();
                 contactForm.style.display = 'none';
                 
                 formMessage.textContent = 'Thank you! Your inquiry has been successfully sent. We will be in touch shortly.';
                 formMessage.classList.remove('hidden');
 
-                // Hide success message after 5 seconds
                 setTimeout(() => {
                     formMessage.classList.add('hidden');
                     contactForm.style.display = 'block';
                 }, 5000);
             });
         }
+        
+        // --- 3. Portfolio Case Study Tracking (GTM Event Tracking) ---
+        document.querySelectorAll('.portfolio-link').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault(); 
+                const projectName = link.getAttribute('data-project');
+                
+                // Track this click in GTM as a Key Engagement Event
+                if (typeof dataLayer !== 'undefined') {
+                    dataLayer.push({
+                        'event': 'portfolio_view',
+                        'project_name': projectName 
+                    });
+                    alert(`Simulating viewing details for: ${projectName}. Check the GTM Debugger!`);
+                    console.log(`GTM Data Layer event pushed: portfolio_view for project: ${projectName}`);
+                } else {
+                    alert(`Simulating viewing details for: ${projectName}. (GTM not detected)`);
+                }
+            });
+        });
     </script>
 </body>
 </html>
